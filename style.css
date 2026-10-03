@@ -1,0 +1,474 @@
+/* =========================================================
+   CRAFTHUB DARK THEME - COMPLEX DASHBOARD & GRID CARDS
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+:root {
+    --bg-main: #0a0e17;
+    --bg-card: #131c2e;
+    --bg-input: #0f172a;
+    --accent-blue: #2563eb;
+    --accent-cyan: #38bdf8;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: #1e293b;
+    --glow: 0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 24px 16px;
+    min-height: 100vh;
+}
+
+.hidden { display: none !important; }
+.margin-top { margin-top: 24px; }
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ================= LOGIN FORM ================= */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 36px;
+    text-align: center;
+}
+
+.brand-logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent-cyan);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    margin-bottom: 24px;
+}
+
+/* ================= HEADER & NAV ================= */
+header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0a0e17 100%);
+    border: 1px solid var(--border-color);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: var(--glow);
+}
+
+.user-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    font-size: 1.5rem;
+    background: #1e293b;
+    padding: 6px;
+    border-radius: 50%;
+}
+
+.badge-role {
+    display: inline-block;
+    padding: 2px 8px;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid var(--accent-red);
+    color: var(--accent-red);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: var(--accent-red);
+    color: white;
+}
+
+.header-title h1 {
+    font-size: 1.8rem;
+    color: var(--accent-cyan);
+}
+
+.header-title p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* Nav Tabs */
+.nav-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px;
+    background-color: var(--bg-input);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.88rem;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    color: white;
+    border-color: var(--accent-cyan);
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, var(--accent-blue), #1d4ed8);
+    color: white;
+    border-color: var(--accent-blue);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
+
+/* ================= CARDS & LAYOUT ================= */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: var(--glow);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    min-width: 280px;
+    padding: 10px 16px;
+    border-radius: 20px;
+    border: 1px solid #334155;
+    background-color: var(--bg-input);
+    color: white;
+}
+
+/* ================= GRID PRODUCT CARDS (PEMBELI) ================= */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
+}
+
+.product-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background-color: #0f172a;
+}
+
+.product-info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.product-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--accent-cyan);
+}
+
+.product-stock {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+/* ================= ANALYTICS STATS (PENJUAL) ================= */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    background: rgba(37, 99, 235, 0.15);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.stat-title {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.stat-data h3 {
+    font-size: 1.2rem;
+    color: var(--accent-cyan);
+}
+
+/* ================= FORM & BUTTONS ================= */
+.form-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--bg-input);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: var(--text-primary);
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: var(--accent-cyan);
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-blue), #1d4ed8);
+    color: white;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--accent-green), #059669);
+    color: white;
+}
+
+/* ================= TABLE ================= */
+.table-responsive { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th, td { padding: 12px 14px; text-align: left; }
+th { background-color: #0f172a; color: var(--accent-cyan); font-size: 0.85rem; border-bottom: 2px solid #334155; }
+td { border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
+td img { width: 40px; height: 40px; object-fit: cover; border-radius: 6px; }
+
+/* Status Badges */
+.badge-status {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.status-ready { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+.status-empty { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); }
+
+/* Modal Popup */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    width: 90%; max-width: 400px; position: relative;
+}
+
+.close-modal {
+    position: absolute; right: 20px; top: 15px; font-size: 1.5rem; cursor: pointer; color: var(--text-secondary);
+}
+
+footer { text-align: center; color: var(--text-secondary); font-size: 0.85rem; margin-top: 20px; }
+
+/* =========================================================
+   ANIMASI SMOOTH & TRANSISI MODERN
+   ========================================================= */
+
+/* 1. Animasi Perpindahan Tab (Fade In & Slide Up) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.99);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Terapkan animasi saat section/tab tidak tersembunyi */
+.tab-content:not(.hidden) {
+    animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. Efek Smooth Saat Tombol Ditekan & Di-hover */
+.btn, .tab-btn, .btn-logout {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efek saat kursor menempel (Hover) */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.35);
+}
+
+/* Efek Bouncing/Membal saat tombol DITEKAN (Active) */
+.btn:active, .tab-btn:active, .btn-logout:active {
+    transform: scale(0.95) translateY(0) !important;
+    filter: brightness(0.9);
+}
+
+/* 3. Efek Smooth pada Kartu Produk saat Di-hover */
+.product-card {
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease !important;
+}
+
+.product-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 12px 28px rgba(56, 189, 248, 0.25);
+}
+
+/* 4. Animasi Pop-Up Halus pada Modal Pembelian */
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: scale(0.85) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal:not(.hidden) .modal-content {
+    animation: modalPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Background overlay modal dengan efek blur */
+.modal {
+    backdrop-filter: blur(6px);
+    transition: opacity 0.3s ease;
+}
+
+/* 5. Smooth Focus pada Input Form */
+input, select {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+input:focus, select:focus {
+    transform: translateY(-1px);
+}

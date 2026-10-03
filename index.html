@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DayaKarsa - Management & Marketplace Kerajinan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ================= HALAMAN LOGIN ================= -->
+    <div id="login-page" class="login-container">
+        <div class="card login-card">
+            <div class="brand-logo">⚡ DayaKarsa</div>
+            <h2>Portal Masuk System</h2>
+            <p class="subtitle">Pilih peran akun Anda untuk melanjutkan</p>
+            
+            <form id="form-login">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Masukkan nama Anda..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Masuk Sebagai</label>
+                    <select id="role" required>
+                        <option value="pembeli">Pembeli / Customer</option>
+                        <option value="penjual">Penjual / Administrator Toko</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Masuk ke Sistem</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= APLIKASI UTAMA (SETELAH LOGIN) ================= -->
+    <div id="main-app" class="container hidden">
+        
+        <!-- Header & Navigasi Dashboard -->
+        <header>
+            <div class="user-bar">
+                <div class="user-info">
+                    <span class="avatar">👤</span>
+                    <div>
+                        <b id="user-name">-</b>
+                        <span id="user-role-badge" class="badge-role">-</span>
+                    </div>
+                </div>
+                <button id="btn-logout" class="btn-logout">Logout 🚪</button>
+            </div>
+
+            <div class="header-title">
+                <h1>⚡ DayaKarsa Dashboard</h1>
+                <p>Platform Manajemen Inventory & Pasar Kerajinan Lokal</p>
+            </div>
+
+            <!-- Navigasi Tab -->
+            <nav class="nav-tabs">
+                <button class="tab-btn active" id="tab-btn-katalog" onclick="switchTab('katalog')">🛍️ Katalog Belanja</button>
+                <button class="tab-btn penjual-only" id="tab-btn-analisa" onclick="switchTab('analisa')">📊 Analisa Penjualan</button>
+                <button class="tab-btn penjual-only" id="tab-btn-stok" onclick="switchTab('stok')">📦 Kelola Stok</button>
+                <button class="tab-btn penjual-only" id="tab-btn-pasokan" onclick="switchTab('pasokan')">➕ Tambah Pasokan</button>
+                <button class="tab-btn penjual-only" id="tab-btn-jual" onclick="switchTab('jual')">💰 Kasir Penjualan</button>
+            </nav>
+        </header>
+
+        <!-- ================= TAB 1: KATALOG BELANJA (PEMBELI & PENJUAL) ================= -->
+        <section id="sec-katalog" class="tab-content">
+            <div class="section-header">
+                <h2>🛍️ Katalog Produk Kerajinan</h2>
+                <!-- Fitur Pencarian Real-Time -->
+                <div class="search-box">
+                    <input type="text" id="search-katalog" placeholder="🔍 Cari kerajinan berdasarkan nama..." onkeyup="filterKatalog()">
+                </div>
+            </div>
+
+            <!-- Grid Kartu Produk -->
+            <div id="grid-katalog" class="product-grid">
+                <!-- Disajikan secara dinamis via JavaScript -->
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: ANALISA PENJUALAN (PENJUAL ONLY) ================= -->
+        <section id="sec-analisa" class="tab-content hidden">
+            <h2>📊 Dashboard Analisa Penjualan</h2>
+            
+            <!-- Cards Ringkasan Statistik -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">💵</div>
+                    <div class="stat-data">
+                        <span class="stat-title">Total Pendapatan</span>
+                        <h3 id="stat-omzet">Rp0</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🛍️</div>
+                    <div class="stat-data">
+                        <span class="stat-title">Item Terjual</span>
+                        <h3 id="stat-terjual">0 Pcs</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🧾</div>
+                    <div class="stat-data">
+                        <span class="stat-title">Total Transaksi</span>
+                        <h3 id="stat-transaksi">0 Transaksi</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-data">
+                        <span class="stat-title">Produk Terlaris</span>
+                        <h3 id="stat-terlaris">-</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabel Riwayat Transaksi -->
+            <div class="card margin-top">
+                <h3>📜 Riwayat Transaksi Penjualan</h3>
+                <div class="table-responsive">
+                    <table id="tabel-riwayat">
+                        <thead>
+                            <tr>
+                                <th>Waktu</th>
+                                <th>Tipe</th>
+                                <th>Nama Produk</th>
+                                <th>Jumlah</th>
+                                <th>Total Bayar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data dinamis JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: KELOLA STOK (PENJUAL ONLY) ================= -->
+        <section id="sec-stok" class="tab-content card hidden">
+            <div class="section-header">
+                <h2>📦 Inventaris & Kontrol Stok</h2>
+                <div class="search-box">
+                    <input type="text" id="search-stok" placeholder="🔍 Cari stok barang..." onkeyup="filterStok()">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="tabel-katalog">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>ID</th>
+                            <th>Nama Barang</th>
+                            <th>Harga Satuan</th>
+                            <th>Sisa Stok</th>
+                            <th>Total Terjual</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data dinamis JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= TAB 4: TAMBAH PASOKAN (PENJUAL ONLY) ================= -->
+        <section id="sec-pasokan" class="tab-content card hidden">
+            <h2>➕ Form Input Pasokan Barang Baru</h2>
+            <form id="form-pasokan">
+                <div class="form-group">
+                    <label for="nama-kerajinan">Nama Kerajinan</label>
+                    <input type="text" id="nama-kerajinan" placeholder="Contoh: Lampu Hias Bambu" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="harga-kerajinan">Harga Satuan (Rp)</label>
+                        <input type="number" id="harga-kerajinan" placeholder="50000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="stok-kerajinan">Jumlah Stok Pasokan</label>
+                        <input type="number" id="stok-kerajinan" placeholder="20" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="foto-kerajinan">URL Foto / Upload Gambar</label>
+                    <input type="file" id="foto-kerajinan" accept="image/*">
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan Pasokan Produk</button>
+            </form>
+        </section>
+
+        <!-- ================= TAB 5: KASIR PENJUALAN (PENJUAL ONLY) ================= -->
+        <section id="sec-jual" class="tab-content card hidden">
+            <h2>💰 Kasir Transaksi Offline / Direct Sale</h2>
+            <form id="form-penjualan-langsung">
+                <div class="form-group">
+                    <label for="pilih-produk-jual">Pilih Barang yang Terjual</label>
+                    <select id="pilih-produk-jual" required>
+                        <!-- Opsi JS -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="jumlah-jual">Jumlah Terjual (Pcs)</label>
+                    <input type="number" id="jumlah-jual" min="1" value="1" required>
+                </div>
+                <button type="submit" class="btn btn-success">Catat Transaksi Penjualan</button>
+            </form>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Dayakarsa Enterprise System - SMAN 2 Baubau Project</p>
+        </footer>
+    </div>
+
+    <!-- MODAL PEMBELIAN PRODUK (MODAL POPUP) -->
+    <div id="modal-beli" class="modal hidden">
+        <div class="modal-content card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">Beli Produk</h3>
+            <p id="modal-price" class="modal-price-text">Rp0</p>
+            <p id="modal-stock" class="modal-stock-text">Sisa Stok: 0</p>
+            
+            <form id="form-modal-beli" class="margin-top">
+                <input type="hidden" id="modal-produk-id">
+                <div class="form-group">
+                    <label for="modal-jumlah">Jumlah Pembelian</label>
+                    <input type="number" id="modal-jumlah" min="1" value="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Konfirmasi Pembelian</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
