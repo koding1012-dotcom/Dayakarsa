@@ -65,27 +65,24 @@
             </nav>
         </header>
 
-        <!-- ================= TAB 1: KATALOG BELANJA (PEMBELI & PENJUAL) ================= -->
+        <!-- ================= TAB 1: KATALOG BELANJA ================= -->
         <section id="sec-katalog" class="tab-content">
             <div class="section-header">
                 <h2>🛍️ Katalog Produk Kerajinan</h2>
-                <!-- Fitur Pencarian Real-Time -->
                 <div class="search-box">
                     <input type="text" id="search-katalog" placeholder="🔍 Cari kerajinan berdasarkan nama..." onkeyup="filterKatalog()">
                 </div>
             </div>
 
-            <!-- Grid Kartu Produk -->
             <div id="grid-katalog" class="product-grid">
                 <!-- Disajikan secara dinamis via JavaScript -->
             </div>
         </section>
 
-        <!-- ================= TAB 2: ANALISA PENJUALAN (PENJUAL ONLY) ================= -->
+        <!-- ================= TAB 2: ANALISA PENJUALAN ================= -->
         <section id="sec-analisa" class="tab-content hidden">
             <h2>📊 Dashboard Analisa Penjualan</h2>
             
-            <!-- Cards Ringkasan Statistik -->
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-icon">💵</div>
@@ -117,7 +114,6 @@
                 </div>
             </div>
 
-            <!-- Tabel Riwayat Transaksi -->
             <div class="card margin-top">
                 <h3>📜 Riwayat Transaksi Penjualan</h3>
                 <div class="table-responsive">
@@ -139,7 +135,7 @@
             </div>
         </section>
 
-        <!-- ================= TAB 3: KELOLA STOK (PENJUAL ONLY) ================= -->
+        <!-- ================= TAB 3: KELOLA STOK ================= -->
         <section id="sec-stok" class="tab-content card hidden">
             <div class="section-header">
                 <h2>📦 Inventaris & Kontrol Stok</h2>
@@ -158,6 +154,7 @@
                             <th>Sisa Stok</th>
                             <th>Total Terjual</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -167,7 +164,7 @@
             </div>
         </section>
 
-        <!-- ================= TAB 4: TAMBAH PASOKAN (PENJUAL ONLY) ================= -->
+        <!-- ================= TAB 4: TAMBAH PASOKAN ================= -->
         <section id="sec-pasokan" class="tab-content card hidden">
             <h2>➕ Form Input Pasokan Barang Baru</h2>
             <form id="form-pasokan">
@@ -185,15 +182,32 @@
                         <input type="number" id="stok-kerajinan" placeholder="20" required>
                     </div>
                 </div>
+                
+                <!-- Input Gambar: Galeri vs Link -->
                 <div class="form-group">
-                    <label for="foto-kerajinan">URL Foto / Upload Gambar</label>
-                    <input type="file" id="foto-kerajinan" accept="image/*">
+                    <label>Foto Produk Kerajinan</label>
+                    <div class="image-toggle-group">
+                        <button type="button" id="btn-mode-galeri" class="btn-toggle active" onclick="switchFotoMode('galeri')">📁 Dari Galeri HP/Laptop</button>
+                        <button type="button" id="btn-mode-link" class="btn-toggle" onclick="switchFotoMode('link')">🔗 Pakai Link URL</button>
+                    </div>
+
+                    <div id="box-galeri" class="foto-input-box">
+                        <input type="file" id="foto-file" accept="image/*" onchange="previewFotoGaleri(event)">
+                        <div id="preview-wrapper" class="preview-box hidden">
+                            <img id="img-preview" src="" alt="Preview Gambar">
+                        </div>
+                    </div>
+
+                    <div id="box-link" class="foto-input-box hidden">
+                        <input type="url" id="foto-url" placeholder="https://i.postimg.cc/...">
+                    </div>
                 </div>
+
                 <button type="submit" class="btn btn-primary">Simpan Pasokan Produk</button>
             </form>
         </section>
 
-        <!-- ================= TAB 5: KASIR PENJUALAN (PENJUAL ONLY) ================= -->
+        <!-- ================= TAB 5: KASIR PENJUALAN ================= -->
         <section id="sec-jual" class="tab-content card hidden">
             <h2>💰 Kasir Transaksi Offline / Direct Sale</h2>
             <form id="form-penjualan-langsung">
@@ -216,7 +230,7 @@
         </footer>
     </div>
 
-    <!-- MODAL PEMBELIAN PRODUK (MODAL POPUP) -->
+    <!-- MODAL PEMBELIAN PRODUK -->
     <div id="modal-beli" class="modal hidden">
         <div class="modal-content card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
